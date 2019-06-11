@@ -10,7 +10,7 @@ import UIKit
 import SceneKit
 import ARKit
 
-class HeroesPlacer: UIViewController, ARSCNViewDelegate {
+class HeroesPlacerViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     

@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		3181E47C22AFC874007C1CF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3181E47B22AFC874007C1CF2 /* AppDelegate.swift */; };
 		3181E47E22AFC874007C1CF2 /* heroes.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 3181E47D22AFC874007C1CF2 /* heroes.scnassets */; };
-		3181E48022AFC874007C1CF2 /* HeroesPlacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3181E47F22AFC874007C1CF2 /* HeroesPlacer.swift */; };
+		3181E48022AFC874007C1CF2 /* HeroesPlacerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3181E47F22AFC874007C1CF2 /* HeroesPlacerViewController.swift */; };
 		3181E48322AFC874007C1CF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3181E48122AFC874007C1CF2 /* Main.storyboard */; };
 		3181E48522AFC875007C1CF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3181E48422AFC875007C1CF2 /* Assets.xcassets */; };
 		3181E48822AFC875007C1CF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3181E48622AFC875007C1CF2 /* LaunchScreen.storyboard */; };
+		3181E49022AFDCF1007C1CF2 /* HeroesPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3181E48F22AFDCF1007C1CF2 /* HeroesPickerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3181E47822AFC874007C1CF2 /* MarvelAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3181E47B22AFC874007C1CF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3181E47D22AFC874007C1CF2 /* heroes.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = heroes.scnassets; sourceTree = "<group>"; };
-		3181E47F22AFC874007C1CF2 /* HeroesPlacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesPlacer.swift; sourceTree = "<group>"; };
+		3181E47F22AFC874007C1CF2 /* HeroesPlacerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesPlacerViewController.swift; sourceTree = "<group>"; };
 		3181E48222AFC874007C1CF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3181E48422AFC875007C1CF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3181E48722AFC875007C1CF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3181E48922AFC875007C1CF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3181E48F22AFDCF1007C1CF2 /* HeroesPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesPickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +60,12 @@
 			children = (
 				3181E47B22AFC874007C1CF2 /* AppDelegate.swift */,
 				3181E47D22AFC874007C1CF2 /* heroes.scnassets */,
-				3181E47F22AFC874007C1CF2 /* HeroesPlacer.swift */,
+				3181E47F22AFC874007C1CF2 /* HeroesPlacerViewController.swift */,
 				3181E48122AFC874007C1CF2 /* Main.storyboard */,
 				3181E48422AFC875007C1CF2 /* Assets.xcassets */,
 				3181E48622AFC875007C1CF2 /* LaunchScreen.storyboard */,
 				3181E48922AFC875007C1CF2 /* Info.plist */,
+				3181E48F22AFDCF1007C1CF2 /* HeroesPickerViewController.swift */,
 			);
 			path = MarvelAR;
 			sourceTree = "<group>";
@@ -139,7 +142,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3181E48022AFC874007C1CF2 /* HeroesPlacer.swift in Sources */,
+				3181E48022AFC874007C1CF2 /* HeroesPlacerViewController.swift in Sources */,
+				3181E49022AFDCF1007C1CF2 /* HeroesPickerViewController.swift in Sources */,
 				3181E47C22AFC874007C1CF2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
