@@ -10,23 +10,32 @@ import SceneKit
 
 extension SCNNode {
     
-    func rotateAroundSelf(initialPosition: SCNVector3, duration: Double) {
-        let action = SCNAction.rotate(by: .pi, around: SCNVector3(initialPosition.x, initialPosition.y + 1, initialPosition.z), duration: duration)
-        let rotateForever = SCNAction.repeatForever(action)
-        runAction(rotateForever)
+    func rotateInPlace(duration: Double) {
+        centerPivotWithoutMoving()
+        let loop = SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 5, z: 0, duration: 2.5))
+        runAction(loop)
     }
     
-    func centerPivot() {
+    func centerPivotWithoutMoving() {
         
-        let minVec = boundingBox.min
-        let maxVec = boundingBox.max
+        let min = boundingBox.min
+        let max = boundingBox.max
         
-       let bound = SCNVector3(x: maxVec.x - minVec.x,
-                              y: maxVec.y - minVec.y,
-                              z: maxVec.z - minVec.z)
-            
-        pivot = SCNMatrix4MakeTranslation(bound.x / 2,
-                                          bound.y / 2,
-                                          bound.z / 2)
+        let x = Float(min.x + (max.x - min.x)/2)
+        let y = Float(min.y + (max.y - min.y)/2)
+        let z = Float(min.z + (max.z - min.z)/2)
+        
+        pivot = SCNMatrix4MakeTranslation(x, y, z)
+        
+        position = SCNVector3(x, y, z)
+    }
+}
+
+extension float4x4 {
+    init(translation vector: float3) {
+        self.init(float4(1, 0, 0, 0),
+                  float4(0, 1, 0, 0),
+                  float4(0, 0, 1, 0),
+                  float4(vector.x, vector.y, vector.z, 1))
     }
 }

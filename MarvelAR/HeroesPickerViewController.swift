@@ -38,7 +38,6 @@ class HeroesPickerViewController: UIViewController {
         view.frame = CGRect(origin: .zero, size: size)
         sceneView = SCNView(frame: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         view.insertSubview(sceneView, at: 0)
-        sceneView.debugOptions = SCNDebugOptions(arrayLiteral: [SCNDebugOptions.renderAsWireframe])
         scene = SCNScene(named: "heroes.scnassets/picker.scn")
         sceneView.scene = scene
         
@@ -58,19 +57,19 @@ class HeroesPickerViewController: UIViewController {
     
         let ironManPosition = SCNVector3(0, -2, 0)
         let ironManNode = getHeroNode(name: "ironMan", position: ironManPosition, eulerAngles: SCNVector3(5, 0, 0))
-        ironManNode.rotateAroundSelf(initialPosition: ironManPosition, duration: 8)
+        ironManNode.rotateInPlace(duration: 8)
         scene.rootNode.addChildNode(ironManNode)
         
-        let hulkPosition = SCNVector3(-1.19, -0.8, -1)
-        let hulkNode = getHeroNode(name: "hulk", position: hulkPosition, eulerAngles: SCNVector3(90.0.degreesToRadians, 0.3, 0))
-        hulkNode.scale = SCNVector3(4, 4, 4)
-        hulkNode.rotateAroundSelf(initialPosition: hulkPosition, duration: 8)
+        let hulkPosition = SCNVector3(-3.5, -2, 0)
+        let hulkNode = getHeroNode(name: "hulk", position: hulkPosition, eulerAngles: SCNVector3(0, 0.3, 0))
+        hulkNode.rotateInPlace(duration: 8)
         scene.rootNode.addChildNode(hulkNode)
         
         let captainAmericaPosition = SCNVector3(3.2, -2.1, 0)
         let captainAmericaNode = getHeroNode(name: "captainAmerica", position: captainAmericaPosition, eulerAngles: SCNVector3(5, -0.3, 0))
-        captainAmericaNode.centerPivot()
-        captainAmericaNode.rotateAroundSelf(initialPosition: captainAmericaPosition, duration: 8)
+        
+        captainAmericaNode.rotateInPlace(duration: 8)
+
         scene.rootNode.addChildNode(captainAmericaNode)
     }
     
