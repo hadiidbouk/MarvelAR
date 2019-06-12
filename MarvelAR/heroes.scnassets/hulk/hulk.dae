@@ -4,8 +4,8 @@
   <contributor>
    <authoring_tool>SceneKit Collada Exporter v1.0</authoring_tool>
   </contributor>
-  <created>2019-06-12T08:16:46Z</created>
-  <modified>2019-06-12T08:16:46Z</modified>
+  <created>2019-06-12T12:42:11Z</created>
+  <modified>2019-06-12T12:42:11Z</modified>
   <unit meter="1.000000"/>
   <up_axis>Y_UP</up_axis>
  </asset>
@@ -155,7 +155,6 @@
  <library_visual_scenes>
   <visual_scene id="scene12">
    <node id="Armature" name="hulkArmature">
-    <matrix>1 0 0 0 0 5.960463e-08 -0.9999998 0 0 0.9999998 5.960463e-08 0 0 0 0 1 </matrix>
     <node id="Armature_Armature" name="Armature" sid="SID_1" type="JOINT">
      <matrix>1 -0 0 0 0 3.576278e-07 0.9999998 0 -0 -0.9999998 3.576278e-07 0 0 0 0 1 </matrix>
      <node id="Armature_root_ground" name="root_ground" sid="SID_2" type="JOINT">

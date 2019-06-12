@@ -11,6 +11,7 @@ import SceneKit
 
 class HeroesPickerViewController: UIViewController {
     
+    var cameraNode: SCNNode!
     var scene: SCNScene!
     var sceneView: SCNView!
     var size: CGSize!
@@ -37,11 +38,11 @@ class HeroesPickerViewController: UIViewController {
         view.frame = CGRect(origin: .zero, size: size)
         sceneView = SCNView(frame: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         view.insertSubview(sceneView, at: 0)
-        
+        sceneView.debugOptions = SCNDebugOptions(arrayLiteral: [SCNDebugOptions.renderAsWireframe])
         scene = SCNScene(named: "heroes.scnassets/picker.scn")
         sceneView.scene = scene
         
-        let cameraNode = SCNNode()
+        cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
         scene?.rootNode.addChildNode(cameraNode)
         cameraNode.position = SCNVector3(0, 0, 8)
@@ -54,15 +55,22 @@ class HeroesPickerViewController: UIViewController {
     }
     
     private func addHerosNode() {
-        
-        let ironManNode = getHeroNode(name: "ironMan", position: SCNVector3(0, -2, 0), eulerAngles: SCNVector3(5, 0, 0))
+    
+        let ironManPosition = SCNVector3(0, -2, 0)
+        let ironManNode = getHeroNode(name: "ironMan", position: ironManPosition, eulerAngles: SCNVector3(5, 0, 0))
+        ironManNode.rotateAroundSelf(initialPosition: ironManPosition, duration: 8)
         scene.rootNode.addChildNode(ironManNode)
         
-        let hulkNode = getHeroNode(name: "hulk", position: SCNVector3(-1.19, -0.8, -1), eulerAngles: SCNVector3(0, 0.3, 0))
+        let hulkPosition = SCNVector3(-1.19, -0.8, -1)
+        let hulkNode = getHeroNode(name: "hulk", position: hulkPosition, eulerAngles: SCNVector3(90.0.degreesToRadians, 0.3, 0))
         hulkNode.scale = SCNVector3(4, 4, 4)
+        hulkNode.rotateAroundSelf(initialPosition: hulkPosition, duration: 8)
         scene.rootNode.addChildNode(hulkNode)
         
-        let captainAmericaNode = getHeroNode(name: "captainAmerica", position: SCNVector3(3.2, -2.1, 0), eulerAngles: SCNVector3(5, -0.3, 0))
+        let captainAmericaPosition = SCNVector3(3.2, -2.1, 0)
+        let captainAmericaNode = getHeroNode(name: "captainAmerica", position: captainAmericaPosition, eulerAngles: SCNVector3(5, -0.3, 0))
+        captainAmericaNode.centerPivot()
+        captainAmericaNode.rotateAroundSelf(initialPosition: captainAmericaPosition, duration: 8)
         scene.rootNode.addChildNode(captainAmericaNode)
     }
     
