@@ -58,7 +58,7 @@ class HeroesPickerViewController: UIViewController {
         let ironManNode = getHeroNode(name: "ironMan", position: SCNVector3(0, -2, 0), eulerAngles: SCNVector3(5, 0, 0))
         scene.rootNode.addChildNode(ironManNode)
         
-        let hulkNode = getHeroNode(name: "hulk", position: SCNVector3(-1.1, -0.8, -1), eulerAngles: SCNVector3(0, 0.3, 0))
+        let hulkNode = getHeroNode(name: "hulk", position: SCNVector3(-1.19, -0.8, -1), eulerAngles: SCNVector3(0, 0.3, 0))
         hulkNode.scale = SCNVector3(4, 4, 4)
         scene.rootNode.addChildNode(hulkNode)
         
