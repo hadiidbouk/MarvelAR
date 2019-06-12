@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		310E410522B12B78001CAFAE /* SCNNode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310E410422B12B78001CAFAE /* SCNNode+Extensions.swift */; };
+		310E410722B12C2A001CAFAE /* FloatingPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310E410622B12C2A001CAFAE /* FloatingPoint+Extensions.swift */; };
 		3181E47C22AFC874007C1CF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3181E47B22AFC874007C1CF2 /* AppDelegate.swift */; };
 		3181E47E22AFC874007C1CF2 /* heroes.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 3181E47D22AFC874007C1CF2 /* heroes.scnassets */; };
 		3181E48022AFC874007C1CF2 /* HeroesPlacerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3181E47F22AFC874007C1CF2 /* HeroesPlacerViewController.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		310E410422B12B78001CAFAE /* SCNNode+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNNode+Extensions.swift"; sourceTree = "<group>"; };
+		310E410622B12C2A001CAFAE /* FloatingPoint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FloatingPoint+Extensions.swift"; sourceTree = "<group>"; };
 		3181E47822AFC874007C1CF2 /* MarvelAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3181E47B22AFC874007C1CF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3181E47D22AFC874007C1CF2 /* heroes.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = heroes.scnassets; sourceTree = "<group>"; };
@@ -44,6 +48,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		310E410322B12B61001CAFAE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				310E410422B12B78001CAFAE /* SCNNode+Extensions.swift */,
+				310E410622B12C2A001CAFAE /* FloatingPoint+Extensions.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		3181E46F22AFC874007C1CF2 = {
 			isa = PBXGroup;
 			children = (
@@ -65,6 +78,7 @@
 		3181E47A22AFC874007C1CF2 /* MarvelAR */ = {
 			isa = PBXGroup;
 			children = (
+				310E410322B12B61001CAFAE /* Extension */,
 				3181E47B22AFC874007C1CF2 /* AppDelegate.swift */,
 				3181E47D22AFC874007C1CF2 /* heroes.scnassets */,
 				3181E47F22AFC874007C1CF2 /* HeroesPlacerViewController.swift */,
@@ -193,6 +207,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				310E410522B12B78001CAFAE /* SCNNode+Extensions.swift in Sources */,
+				310E410722B12C2A001CAFAE /* FloatingPoint+Extensions.swift in Sources */,
 				3181E48022AFC874007C1CF2 /* HeroesPlacerViewController.swift in Sources */,
 				3181E49022AFDCF1007C1CF2 /* HeroesPickerViewController.swift in Sources */,
 				3181E47C22AFC874007C1CF2 /* AppDelegate.swift in Sources */,

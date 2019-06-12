@@ -16,15 +16,6 @@ class HeroesPlacerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
-        
-        // Create a new scene
-        let scene = SCNScene(named: "heroes.scnassets/captainAmerica/captainAmerica.scn")!
-        
-        // Set the scene to the view
-        sceneView.scene = scene
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,7 +40,7 @@ class HeroesPlacerViewController: UIViewController {
     }
     
     @IBAction func onPickAHeroBtnPressed(_ sender: Any) {
-        let heroesPickerViewController = HeroesPickerViewController(size: CGSize(width: 250, height: 500))
+        let heroesPickerViewController = HeroesPickerViewController(size: CGSize(width: view.bounds.width, height: 300))
         heroesPickerViewController.modalPresentationStyle = .popover
         heroesPickerViewController.popoverPresentationController?.delegate = self
         present(heroesPickerViewController, animated: true, completion: nil)
