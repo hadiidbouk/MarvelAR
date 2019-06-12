@@ -16,15 +16,6 @@ class HeroesPlacerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
-        
-        // Create a new scene
-        //let scene = SCNScene(named: "heroes.scnassets/captainAmerica/captainAmerica.scn")!
-        
-        // Set the scene to the view
-        //sceneView.scene = scene
     }
     
     override func viewWillAppear(_ animated: Bool) {
