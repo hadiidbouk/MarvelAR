@@ -30,7 +30,7 @@ class HeroesPickerViewController: UIViewController {
         
         preferredContentSize = size
         setupScene()
-        addHerosNode()
+        addHerosNodes()
     }
     
     private func setupScene() {
@@ -54,7 +54,7 @@ class HeroesPickerViewController: UIViewController {
         scene?.rootNode.addChildNode(lightNode)
     }
     
-    private func addHerosNode() {
+    private func addHerosNodes() {
     
         let ironManPosition = SCNVector3(0, -2, 0)
         let ironManNode = getHeroNode(name: "ironMan", position: ironManPosition, eulerAngles: SCNVector3(5, 0, 0))
