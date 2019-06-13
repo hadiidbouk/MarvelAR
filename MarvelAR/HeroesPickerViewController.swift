@@ -60,35 +60,20 @@ class HeroesPickerViewController: UIViewController {
     
     private func addHerosNodes() {
     
-        let ironManPosition = SCNVector3(0, -2, 0)
-        let ironManNode = getHeroNode(name: "ironMan", position: ironManPosition, eulerAngles: SCNVector3(5, 0, 0))
+        let ironManNode = Heroes.getHeroNode(by: "ironMan")
+        ironManNode.position = SCNVector3(0, -2, 0)
         ironManNode.rotateInPlace(duration: 8)
         scene.rootNode.addChildNode(ironManNode)
         
-        let hulkPosition = SCNVector3(-3.5, -2, 0)
-        let hulkNode = getHeroNode(name: "hulk", position: hulkPosition, eulerAngles: SCNVector3(0, 0.3, 0))
+        let hulkNode = Heroes.getHeroNode(by: "hulk")
+        hulkNode.position = SCNVector3(-3.5, -2, 0)
         hulkNode.rotateInPlace(duration: 8)
         scene.rootNode.addChildNode(hulkNode)
         
-        let captainAmericaPosition = SCNVector3(3.2, -2.1, 0)
-        let captainAmericaNode = getHeroNode(name: "captainAmerica", position: captainAmericaPosition, eulerAngles: SCNVector3(5, -0.3, 0))
-        
+        let captainAmericaNode = Heroes.getHeroNode(by: "captainAmerica")
+        captainAmericaNode.position = SCNVector3(3.2, -2.1, 0)
         captainAmericaNode.rotateInPlace(duration: 8)
-
         scene.rootNode.addChildNode(captainAmericaNode)
-    }
-    
-    private func getHeroNode(name: String, position: SCNVector3, eulerAngles: SCNVector3) -> SCNNode {
-        let scene = SCNScene(named: "heroes.scnassets/\(name)/\(name).dae")
-        let containerNode = SCNNode()
-
-        if let rootNode = scene?.rootNode {
-            rootNode.position = position
-            rootNode.eulerAngles = eulerAngles
-            
-            containerNode.addChildNode(rootNode)
-        }
-        return containerNode
     }
     
     @objc func handleTap(_ gestureRecognizer: UIGestureRecognizer) {
@@ -97,7 +82,8 @@ class HeroesPickerViewController: UIViewController {
         
         if hitResults.count > 0 {
             let node = hitResults[0].node
-            heroesPlacerViewController?.onHeroSelected(heroNode: node)
+            guard let parentNode = node.parent else { return }
+            heroesPlacerViewController?.onHeroSelected(selectedHeroName: parentNode.name)
         }
     }
 }

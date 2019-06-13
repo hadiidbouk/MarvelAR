@@ -15,7 +15,7 @@ class HeroesPlacerViewController: UIViewController {
     @IBOutlet var sceneView: ARSCNView!
     
     var heroesPickerViewController: HeroesPickerViewController!
-    var selectedHeroNode: SCNNode?
+    var selectedHeroName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,13 +51,40 @@ class HeroesPlacerViewController: UIViewController {
         heroesPickerViewController.popoverPresentationController?.sourceView = sender as? UIView
     }
     
-    func onHeroSelected(heroNode: SCNNode) {
-        selectedHeroNode = heroNode
+    func onHeroSelected(selectedHeroName: String?) {
+        self.selectedHeroName = selectedHeroName
         heroesPickerViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    func placeHero(position: SCNVector3) {
+        guard let nodeName = selectedHeroName else { return }
+        let node = Heroes.getHeroNode(by: nodeName)
+        node.position = position
+        node.scale = SCNVector3(0.1, 0.1, 0.1)
+        sceneView.scene.rootNode.addChildNode(node)
     }
 }
 
 //MARK: UIPopoverPresentationControllerDelegate
 extension HeroesPlacerViewController : UIPopoverPresentationControllerDelegate {
     
+}
+
+//MARK: ARSCNViewDelegate
+extension HeroesPlacerViewController : ARSCNViewDelegate {
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        if heroesPickerViewController.isViewLoaded && (heroesPickerViewController.view.window != nil) {
+            return
+        }
+        
+        guard let touch = touches.first else { return }
+        
+        let results = sceneView.hitTest(touch.location(in: sceneView), types: [.featurePoint])
+        guard let hitFeature = results.last else { return }
+        let hitTransform = SCNMatrix4(hitFeature.worldTransform)
+        let hitPosition = SCNVector3Make(hitTransform.m41, hitTransform.m42, hitTransform.m43)
+        placeHero(position: hitPosition)
+    }
 }

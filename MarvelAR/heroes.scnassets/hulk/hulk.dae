@@ -4,8 +4,8 @@
   <contributor>
    <authoring_tool>SceneKit Collada Exporter v1.0</authoring_tool>
   </contributor>
-  <created>2019-06-12T15:20:13Z</created>
-  <modified>2019-06-12T15:20:13Z</modified>
+  <created>2019-06-13T07:49:04Z</created>
+  <modified>2019-06-13T07:49:04Z</modified>
   <unit meter="1.000000"/>
   <up_axis>Y_UP</up_axis>
  </asset>
@@ -403,7 +403,7 @@
      </node>
     </node>
    </node>
-   <node id="VisualSceneNode84" name="HulkBody">
+   <node id="VisualSceneNode84" name="hulk">
     <instance_controller url="#skin10">
      <skeleton>#VisualSceneNode1</skeleton>
      <bind_material>
