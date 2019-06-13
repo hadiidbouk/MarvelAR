@@ -19,20 +19,48 @@ class HeroesPlacerViewController: UIViewController {
     
     //UI
     var cameraNode: SCNNode!
+    @IBOutlet weak var actionView: UIView!
+    @IBOutlet weak var deleteBtn: UIButton!
+    @IBOutlet weak var rotateBtn: UIButton!
+    @IBOutlet weak var downBtn: UIButton!
+    @IBOutlet weak var upBtn: UIButton!
+    @IBOutlet weak var editBtn: UIButton!
+    @IBOutlet weak var editModeLbl: UILabel!
+    @IBOutlet weak var heroPickerBtn: UIButton!
+    @IBOutlet weak var closeEditModeBtn: UIButton!
+    
+    var focusPoint: CGPoint {
+        return CGPoint(
+            x: sceneView.bounds.size.width / 2,
+            y: sceneView.bounds.size.height - (sceneView.bounds.size.height / 1.618))
+    }
+    
+    var focusView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.alpha = 0.8
+        
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.frame.size = CGSize(width: 20, height: 20)
+        imageView.image = #imageLiteral(resourceName: "focus")
+        imageView.center = view.center
+        
+        view.addSubview(imageView)
+        
+        UIView.animate(withDuration: 1.0, delay: 0, options: [.repeat, .autoreverse], animations: {
+            
+            imageView.transform = imageView.transform.scaledBy(x: 1.5, y: 1.5)
+            
+        }, completion: nil)
+        
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        cameraNode = SCNNode()
-        cameraNode.camera = SCNCamera()
-        sceneView.scene.rootNode.addChildNode(cameraNode)
-        cameraNode.position = SCNVector3(0, 0, 8)
-        
-        let lightNode = SCNNode()
-        lightNode.light = SCNLight()
-        lightNode.light?.type = .spot
-        lightNode.position = SCNVector3(0, 5, 5)
-        sceneView.scene.rootNode.addChildNode(lightNode)
+        setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,6 +104,53 @@ class HeroesPlacerViewController: UIViewController {
         node.position = position
         node.scale = SCNVector3(0.1, 0.1, 0.1)
         sceneView.scene.rootNode.addChildNode(node)
+        selectedHeroName = nil
+    }
+    @IBAction func onEditBtnPressed(_ sender: Any) {
+        hideEditBtn()
+        hideHeroPickerBtn()
+        showEditModeLbl()
+        showFocusView()
+        showCloseEditModeBtn()
+    }
+    
+    @IBAction func onCloseEditModeBtnPressed(_ sender: Any) {
+        showEditBtn()
+        showHeroPickerBtn()
+        hideEditModeLbl()
+        hideFocusView()
+        hideCloseEditModeBtn()
+    }
+}
+
+//MARK: UI
+extension HeroesPlacerViewController {
+    
+    private func setupUI() {
+        setupSceneView()
+        setupActionView()
+    }
+    
+    private func setupSceneView() {
+        cameraNode = SCNNode()
+        cameraNode.camera = SCNCamera()
+        sceneView.scene.rootNode.addChildNode(cameraNode)
+        cameraNode.position = SCNVector3(0, 0, 8)
+        
+        let lightNode = SCNNode()
+        lightNode.light = SCNLight()
+        lightNode.light?.type = .spot
+        lightNode.position = SCNVector3(0, 5, 5)
+        sceneView.scene.rootNode.addChildNode(lightNode)
+        
+        focusView.isHidden = true
+        focusView.center = focusPoint
+        sceneView.addSubview(focusView)
+    }
+    
+    private func setupActionView() {
+        actionView.layer.cornerRadius = 15
+        actionView.isHidden = true
     }
 }
 
