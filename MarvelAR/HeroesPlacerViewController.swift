@@ -14,7 +14,7 @@ class HeroesPlacerViewController: UIViewController {
 
     @IBOutlet var sceneView: ARSCNView!
     
-    var heroesPickerViewController: HeroesPickerViewController!
+    var heroesPickerViewController: HeroesPickerViewController?
     var selectedHeroName: String?
     
     //UI
@@ -67,7 +67,7 @@ class HeroesPlacerViewController: UIViewController {
     
     func onHeroSelected(selectedHeroName: String?) {
         self.selectedHeroName = selectedHeroName
-        heroesPickerViewController.dismiss(animated: true, completion: nil)
+        heroesPickerViewController?.dismiss(animated: true, completion: nil)
     }
     
     func placeHero(position: SCNVector3) {
@@ -89,7 +89,7 @@ extension HeroesPlacerViewController : ARSCNViewDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        if heroesPickerViewController.isViewLoaded && (heroesPickerViewController.view.window != nil) {
+        if heroesPickerViewController?.isViewLoaded ?? false && (heroesPickerViewController?.view.window != nil) {
             return
         }
         
