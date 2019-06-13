@@ -16,6 +16,8 @@ class HeroesPickerViewController: UIViewController {
     var sceneView: SCNView!
     var size: CGSize!
     
+    weak var heroesPlacerViewController: HeroesPlacerViewController?
+    
     init(size: CGSize) {
         super.init(nibName: nil, bundle: nil)
         self.size = size
@@ -31,6 +33,9 @@ class HeroesPickerViewController: UIViewController {
         preferredContentSize = size
         setupScene()
         addHerosNodes()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        sceneView.addGestureRecognizer(tap)
     }
     
     private func setupScene() {
@@ -84,5 +89,15 @@ class HeroesPickerViewController: UIViewController {
             containerNode.addChildNode(rootNode)
         }
         return containerNode
+    }
+    
+    @objc func handleTap(_ gestureRecognizer: UIGestureRecognizer) {
+        let p = gestureRecognizer.location(in: sceneView)
+        let hitResults = sceneView.hitTest(p, options: [:])
+        
+        if hitResults.count > 0 {
+            let node = hitResults[0].node
+            heroesPlacerViewController?.onHeroSelected(heroNode: node)
+        }
     }
 }

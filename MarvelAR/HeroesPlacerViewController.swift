@@ -14,6 +14,9 @@ class HeroesPlacerViewController: UIViewController {
 
     @IBOutlet var sceneView: ARSCNView!
     
+    var heroesPickerViewController: HeroesPickerViewController!
+    var selectedHeroNode: SCNNode?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -40,11 +43,17 @@ class HeroesPlacerViewController: UIViewController {
     }
     
     @IBAction func onPickAHeroBtnPressed(_ sender: Any) {
-        let heroesPickerViewController = HeroesPickerViewController(size: CGSize(width: view.bounds.width, height: 300))
+        heroesPickerViewController = HeroesPickerViewController(size: CGSize(width: view.bounds.width, height: 300))
         heroesPickerViewController.modalPresentationStyle = .popover
         heroesPickerViewController.popoverPresentationController?.delegate = self
+        heroesPickerViewController.heroesPlacerViewController = self
         present(heroesPickerViewController, animated: true, completion: nil)
         heroesPickerViewController.popoverPresentationController?.sourceView = sender as? UIView
+    }
+    
+    func onHeroSelected(heroNode: SCNNode) {
+        selectedHeroNode = heroNode
+        heroesPickerViewController.dismiss(animated: true, completion: nil)
     }
 }
 
