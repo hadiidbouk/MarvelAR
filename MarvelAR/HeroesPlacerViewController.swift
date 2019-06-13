@@ -17,8 +17,22 @@ class HeroesPlacerViewController: UIViewController {
     var heroesPickerViewController: HeroesPickerViewController!
     var selectedHeroName: String?
     
+    //UI
+    var cameraNode: SCNNode!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        cameraNode = SCNNode()
+        cameraNode.camera = SCNCamera()
+        sceneView.scene.rootNode.addChildNode(cameraNode)
+        cameraNode.position = SCNVector3(0, 0, 8)
+        
+        let lightNode = SCNNode()
+        lightNode.light = SCNLight()
+        lightNode.light?.type = .spot
+        lightNode.position = SCNVector3(0, 5, 5)
+        sceneView.scene.rootNode.addChildNode(lightNode)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,11 +58,11 @@ class HeroesPlacerViewController: UIViewController {
     
     @IBAction func onPickAHeroBtnPressed(_ sender: Any) {
         heroesPickerViewController = HeroesPickerViewController(size: CGSize(width: view.bounds.width, height: 300))
-        heroesPickerViewController.modalPresentationStyle = .popover
-        heroesPickerViewController.popoverPresentationController?.delegate = self
-        heroesPickerViewController.heroesPlacerViewController = self
-        present(heroesPickerViewController, animated: true, completion: nil)
-        heroesPickerViewController.popoverPresentationController?.sourceView = sender as? UIView
+        heroesPickerViewController!.modalPresentationStyle = .popover
+        heroesPickerViewController!.popoverPresentationController?.delegate = self
+        heroesPickerViewController!.heroesPlacerViewController = self
+        present(heroesPickerViewController!, animated: true, completion: nil)
+        heroesPickerViewController!.popoverPresentationController?.sourceView = sender as? UIView
     }
     
     func onHeroSelected(selectedHeroName: String?) {
