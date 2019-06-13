@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Heroes Placer View Controller-->
+        <scene sceneID="tXr-a1-R10">
+            <objects>
+                <viewController id="BV1-FR-VrT" customClass="HeroesPlacerViewController" customModule="MarvelAR" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="U0K-SW-4ec">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BrB-h1-WRS">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                            </arscnView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vft-9Q-Njl">
+                                <rect key="frame" x="324" y="752" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="K8k-J1-j32"/>
+                                    <constraint firstAttribute="height" constant="70" id="PAq-l3-DyG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                <state key="normal" backgroundImage="shield">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="onPickAHeroBtnPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Eqc-oe-ttX"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SbK-uZ-xuE">
+                                <rect key="frame" x="20" y="752" width="284" height="70"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="JOu-EJ-rfs">
+                                        <rect key="frame" x="0.0" y="0.0" width="284" height="70"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3B-cJ-ptr">
+                                                <rect key="frame" x="0.0" y="14" width="56" height="42.5"/>
+                                                <state key="normal" image="delete"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="467-LR-M4q">
+                                                <rect key="frame" x="76" y="14" width="56" height="42.5"/>
+                                                <state key="normal" image="rotate"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7F-Zm-auu">
+                                                <rect key="frame" x="152" y="14" width="56" height="42.5"/>
+                                                <state key="normal" image="down"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="36l-q2-t9i">
+                                                <rect key="frame" x="228" y="14" width="56" height="42.5"/>
+                                                <state key="normal" image="up"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="0.51016695205479456" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="JOu-EJ-rfs" secondAttribute="bottom" id="2CN-Vf-rgG"/>
+                                    <constraint firstAttribute="height" constant="70" id="E5T-Hh-h6C"/>
+                                    <constraint firstItem="JOu-EJ-rfs" firstAttribute="leading" secondItem="SbK-uZ-xuE" secondAttribute="leading" id="JId-EW-ySc"/>
+                                    <constraint firstAttribute="trailing" secondItem="JOu-EJ-rfs" secondAttribute="trailing" id="PYR-1Q-QbC"/>
+                                    <constraint firstItem="JOu-EJ-rfs" firstAttribute="top" secondItem="SbK-uZ-xuE" secondAttribute="top" id="rIm-8Y-v2x"/>
+                                </constraints>
+                            </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EDIT MODE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAS-A6-A8X">
+                                <rect key="frame" x="153" y="84" width="108" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kvb-v3-X7C">
+                                <rect key="frame" x="20" y="71" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="26U-qv-SDh"/>
+                                    <constraint firstAttribute="width" constant="50" id="8s0-B1-pnw"/>
+                                </constraints>
+                                <state key="normal" image="close"/>
+                                <connections>
+                                    <action selector="onCloseEditModeBtnPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="vk7-Ci-bE2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dqr-Fh-VCx">
+                                <rect key="frame" x="324" y="667" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="6Kv-nu-cdS"/>
+                                    <constraint firstAttribute="width" constant="70" id="apV-Je-bZH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                <state key="normal" backgroundImage="edit">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="onEditBtnPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="ofy-Mj-13E"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Kvb-v3-X7C" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="20" id="40C-JZ-Zow"/>
+                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="vft-9Q-Njl" secondAttribute="bottom" constant="40" id="9LH-OR-Rdg"/>
+                            <constraint firstItem="vft-9Q-Njl" firstAttribute="top" secondItem="Dqr-Fh-VCx" secondAttribute="bottom" constant="15" id="CDz-Fi-sEg"/>
+                            <constraint firstItem="vft-9Q-Njl" firstAttribute="leading" secondItem="SbK-uZ-xuE" secondAttribute="trailing" constant="20" id="EFe-cE-Fdz"/>
+                            <constraint firstItem="aAS-A6-A8X" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" constant="40" id="Fck-Gc-yaf"/>
+                            <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="GsS-dJ-CKf"/>
+                            <constraint firstItem="SbK-uZ-xuE" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="20" id="Iww-GO-JeW"/>
+                            <constraint firstItem="Dqr-Fh-VCx" firstAttribute="trailing" secondItem="vft-9Q-Njl" secondAttribute="trailing" id="Job-BP-lG6"/>
+                            <constraint firstItem="BrB-h1-WRS" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="VpT-BR-CcM"/>
+                            <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="XyZ-9z-H8e"/>
+                            <constraint firstItem="aAS-A6-A8X" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" id="iw9-Em-SXM"/>
+                            <constraint firstItem="Kvb-v3-X7C" firstAttribute="centerY" secondItem="aAS-A6-A8X" secondAttribute="centerY" id="jkw-yR-DCi"/>
+                            <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="rJc-2c-zQA"/>
+                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="vft-9Q-Njl" secondAttribute="trailing" constant="20" id="tps-nf-rj2"/>
+                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="SbK-uZ-xuE" secondAttribute="bottom" constant="40" id="zj1-x1-adC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
+                    </view>
+                    <connections>
+                        <outlet property="actionView" destination="SbK-uZ-xuE" id="lRq-aU-VH8"/>
+                        <outlet property="closeEditModeBtn" destination="Kvb-v3-X7C" id="YNa-K3-AcW"/>
+                        <outlet property="deleteBtn" destination="D3B-cJ-ptr" id="gWe-xF-9TS"/>
+                        <outlet property="downBtn" destination="S7F-Zm-auu" id="4Se-Ju-caG"/>
+                        <outlet property="editBtn" destination="Dqr-Fh-VCx" id="mRs-8e-oGF"/>
+                        <outlet property="editModeLbl" destination="aAS-A6-A8X" id="pEs-M6-qRm"/>
+                        <outlet property="heroPickerBtn" destination="vft-9Q-Njl" id="CWW-Us-t6u"/>
+                        <outlet property="rotateBtn" destination="467-LR-M4q" id="TWB-Q3-0zi"/>
+                        <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
+                        <outlet property="upBtn" destination="36l-q2-t9i" id="sJg-oG-Ah0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="37.681159420289859" y="18.75"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="close" width="42.5" height="42.5"/>
+        <image name="delete" width="42.5" height="42.5"/>
+        <image name="down" width="42.5" height="42.5"/>
+        <image name="edit" width="42.5" height="42.5"/>
+        <image name="rotate" width="42.5" height="42.5"/>
+        <image name="shield" width="42.5" height="42.5"/>
+        <image name="up" width="42.5" height="42.5"/>
+    </resources>
+</document>

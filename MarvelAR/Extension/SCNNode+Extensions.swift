@@ -11,7 +11,6 @@ import SceneKit
 extension SCNNode {
     
     func rotateInPlace(duration: Double) {
-        centerPivotWithoutMoving()
         let loop = SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 5, z: 0, duration: 2.5))
         runAction(loop)
     }
