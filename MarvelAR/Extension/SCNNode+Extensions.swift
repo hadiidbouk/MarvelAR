@@ -13,7 +13,7 @@ extension SCNNode {
     func getTopMostParentNode() -> SCNNode {
         
         if let name = name,
-            name == HeroNode.shapeName {
+            name == HeroNode.shapeName || name == HeroNode.ringName {
             return parent!
         }
         

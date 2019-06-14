@@ -103,7 +103,7 @@ class HeroesPlacerViewController: UIViewController {
         node.scale = SCNVector3(0.1, 0.1, 0.1)
         sceneView.scene.rootNode.addChildNode(node)
         selectedHeroName = nil
-        selectionRingsNodes.append(node)
+        selectionRingsNodes.append(node.ringNode)
     }
     @IBAction func onEditBtnPressed(_ sender: Any) {
         hideEditBtn()
@@ -122,6 +122,20 @@ class HeroesPlacerViewController: UIViewController {
         hideCloseEditModeBtn()
         inEditMode = false
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        if heroesPickerViewController?.isViewLoaded ?? false && (heroesPickerViewController?.view.window != nil) {
+            return
+        }
+        
+        guard let touch = touches.first else { return }
+        
+        let results = sceneView.hitTest(touch.location(in: sceneView), types: [.featurePoint])
+        guard let hitFeature = results.last else { return }
+        let hitTransform = SCNMatrix4(hitFeature.worldTransform)
+        let hitPosition = SCNVector3Make(hitTransform.m41, hitTransform.m42, hitTransform.m43)
+        placeHero(position: hitPosition)
     }
 }
 
@@ -148,6 +162,8 @@ extension HeroesPlacerViewController {
         focusView.isHidden = true
         focusView.center = focusPoint
         sceneView.addSubview(focusView)
+        
+        sceneView.delegate = self
     }
     
     private func setupActionView() {
@@ -164,18 +180,25 @@ extension HeroesPlacerViewController : UIPopoverPresentationControllerDelegate {
 //MARK: ARSCNViewDelegate
 extension HeroesPlacerViewController : ARSCNViewDelegate {
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         
-        if heroesPickerViewController?.isViewLoaded ?? false && (heroesPickerViewController?.view.window != nil) {
-            return
+        DispatchQueue.main.async { [weak self] in
+            
+            guard let strongSelf = self else { return }
+            
+            if !strongSelf.inEditMode { return }
+            
+            for node in strongSelf.selectionRingsNodes {
+                
+                let position = node.convertPosition(SCNVector3Zero, to: nil)
+                let projectedPoint = renderer.projectPoint(position)
+                let projectedCGPoint = CGPoint(x: CGFloat(projectedPoint.x), y: CGFloat(projectedPoint.y))
+                let distance = projectedCGPoint.distance(to: strongSelf.focusPoint)
+                if distance < 50 {
+                    strongSelf.showToast(message: node.getTopMostParentNode().name!, font: .systemFont(ofSize: 30))
+                }
+            }
         }
-        
-        guard let touch = touches.first else { return }
-        
-        let results = sceneView.hitTest(touch.location(in: sceneView), types: [.featurePoint])
-        guard let hitFeature = results.last else { return }
-        let hitTransform = SCNMatrix4(hitFeature.worldTransform)
-        let hitPosition = SCNVector3Make(hitTransform.m41, hitTransform.m42, hitTransform.m43)
-        placeHero(position: hitPosition)
     }
 }
+

@@ -20,6 +20,7 @@
 		31E455BE22B2A6490053CB0D /* HeroesPlacerViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E455BD22B2A6490053CB0D /* HeroesPlacerViewController+Extensions.swift */; };
 		31E455C522B3761A0053CB0D /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E455C422B3761A0053CB0D /* CGPoint+Extensions.swift */; };
 		31E455C722B3BD3E0053CB0D /* HeroNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E455C622B3BD3E0053CB0D /* HeroNode.swift */; };
+		31E455C922B3E6E00053CB0D /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E455C822B3E6E00053CB0D /* UIViewController+Extensions.swift */; };
 		D357CB5DEBD2900582EAFB8E /* Pods_MarvelAR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B95C0694068A405D64268AA6 /* Pods_MarvelAR.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		31E455BD22B2A6490053CB0D /* HeroesPlacerViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HeroesPlacerViewController+Extensions.swift"; sourceTree = "<group>"; };
 		31E455C422B3761A0053CB0D /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
 		31E455C622B3BD3E0053CB0D /* HeroNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroNode.swift; sourceTree = "<group>"; };
+		31E455C822B3E6E00053CB0D /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		B95C0694068A405D64268AA6 /* Pods_MarvelAR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarvelAR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A6AAB3921A34FB8CBBDCCC /* Pods-MarvelAR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelAR.release.xcconfig"; path = "Target Support Files/Pods-MarvelAR/Pods-MarvelAR.release.xcconfig"; sourceTree = "<group>"; };
 		D1C8E4A252E272C68AF00623 /* Pods-MarvelAR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelAR.debug.xcconfig"; path = "Target Support Files/Pods-MarvelAR/Pods-MarvelAR.debug.xcconfig"; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				310E410422B12B78001CAFAE /* SCNNode+Extensions.swift */,
 				310E410622B12C2A001CAFAE /* FloatingPoint+Extensions.swift */,
 				31E455C422B3761A0053CB0D /* CGPoint+Extensions.swift */,
+				31E455C822B3E6E00053CB0D /* UIViewController+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 			files = (
 				310E410522B12B78001CAFAE /* SCNNode+Extensions.swift in Sources */,
 				310E410722B12C2A001CAFAE /* FloatingPoint+Extensions.swift in Sources */,
+				31E455C922B3E6E00053CB0D /* UIViewController+Extensions.swift in Sources */,
 				31E455C522B3761A0053CB0D /* CGPoint+Extensions.swift in Sources */,
 				31E455BE22B2A6490053CB0D /* HeroesPlacerViewController+Extensions.swift in Sources */,
 				31E455B822B22F9C0053CB0D /* HeroName.swift in Sources */,
