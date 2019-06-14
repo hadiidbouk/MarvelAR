@@ -35,7 +35,19 @@ class HeroNode : SCNNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func getRingNode() -> SCNNode {
+    func onSelectNode() {
+        ringNode.geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
+    }
+    
+    func onDeselectNode() {
+        ringNode.geometry?.firstMaterial?.diffuse.contents = UIColor.white
+    }
+}
+
+//MARK: UI
+extension HeroNode {
+    
+    private func getRingNode() -> SCNNode {
         
         let selectionGeometry = SCNTorus(ringRadius: 0.1, pipeRadius: 0.02)
         selectionGeometry.ringSegmentCount = 100
@@ -50,7 +62,7 @@ class HeroNode : SCNNode {
         return ringNode
     }
     
-    func getShapeNode(by name: String) -> SCNNode {
+    private func getShapeNode(by name: String) -> SCNNode {
         switch name {
         case "ironMan":
             return getShapeNode(name: name, eulerAngles: SCNVector3(5, 0, 0))
@@ -69,7 +81,7 @@ class HeroNode : SCNNode {
         shapeNode.eulerAngles = eulerAngles
         shapeNode.position = position
         shapeNode.name = HeroNode.shapeName
-
+        
         shapeNode.defaultPivotAndPosition()
         
         return shapeNode

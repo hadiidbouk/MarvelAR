@@ -17,9 +17,10 @@ class HeroesPlacerViewController: UIViewController {
     var selectionRingsNodes = [SCNNode]()
     var inEditMode = false
     var boundingView: UIView?
+    var cameraNode: SCNNode!
+    var lastSelectedNode: HeroNode?
     
     //UI
-    var cameraNode: SCNNode!
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var actionView: UIView!
     @IBOutlet weak var deleteBtn: UIButton!
@@ -195,7 +196,12 @@ extension HeroesPlacerViewController : ARSCNViewDelegate {
                 let projectedCGPoint = CGPoint(x: CGFloat(projectedPoint.x), y: CGFloat(projectedPoint.y))
                 let distance = projectedCGPoint.distance(to: strongSelf.focusPoint)
                 if distance < 50 {
-                    strongSelf.showToast(message: node.getTopMostParentNode().name!, font: .systemFont(ofSize: 30))
+                    if let heroNode = node.getTopMostParentNode() as? HeroNode {
+                        strongSelf.lastSelectedNode?.onDeselectNode()
+                        heroNode.onSelectNode()
+                        strongSelf.showToast(message: node.getTopMostParentNode().name!, font: .systemFont(ofSize: 30))
+                        strongSelf.lastSelectedNode = heroNode
+                    }
                 }
             }
         }
