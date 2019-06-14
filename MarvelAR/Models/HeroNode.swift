@@ -10,7 +10,20 @@ import SceneKit
 
 class HeroNode : SCNNode {
     
-    private(set) var ringNode: SCNNode!
+    var ringNode: SCNNode = {
+       
+        let selectionGeometry = SCNTorus(ringRadius: 0.1, pipeRadius: 0.02)
+        selectionGeometry.ringSegmentCount = 100
+        selectionGeometry.firstMaterial?.diffuse.contents = #colorLiteral(red: 0.9578504265, green: 0.9529653119, blue: 1, alpha: 0.6693867723)
+        
+        let ringNode = SCNNode(geometry: selectionGeometry)
+        ringNode.name = HeroNode.ringName
+        ringNode.light = SCNLight()
+        ringNode.light?.type = SCNLight.LightType.ambient
+        ringNode.eulerAngles = SCNVector3(90.0.degreesToRadians, 0, 0)
+        return ringNode
+    }()
+    
     private(set) var shapeNode: SCNNode!
     
     var heroName: HeroName!
@@ -27,7 +40,7 @@ class HeroNode : SCNNode {
         shapeNode = getShapeNode(by: name.rawValue)
         addChildNode(shapeNode)
         
-        ringNode = getRingNode()
+        ringNode.position = SCNVector3(0, boundingBox.max.y + 0.1, 1)
         addChildNode(ringNode)
     }
     
@@ -46,21 +59,6 @@ class HeroNode : SCNNode {
 
 //MARK: UI
 extension HeroNode {
-    
-    private func getRingNode() -> SCNNode {
-        
-        let selectionGeometry = SCNTorus(ringRadius: 0.1, pipeRadius: 0.02)
-        selectionGeometry.ringSegmentCount = 100
-        selectionGeometry.firstMaterial?.diffuse.contents = #colorLiteral(red: 0.9578504265, green: 0.9529653119, blue: 1, alpha: 0.6693867723)
-        
-        let ringNode = SCNNode(geometry: selectionGeometry)
-        ringNode.name = HeroNode.ringName
-        ringNode.light = SCNLight()
-        ringNode.light?.type = SCNLight.LightType.ambient
-        ringNode.position = SCNVector3(0, boundingBox.max.y + 0.1, 1)
-        ringNode.eulerAngles = SCNVector3(90.0.degreesToRadians, 0, 0)
-        return ringNode
-    }
     
     private func getShapeNode(by name: String) -> SCNNode {
         switch name {
