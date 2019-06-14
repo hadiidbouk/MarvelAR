@@ -14,7 +14,7 @@ class HeroesPlacerViewController: UIViewController {
 
     var heroesPickerViewController: HeroesPickerViewController?
     var selectedHeroName: HeroName?
-    var selectionRingsNodes = [SCNNode]()
+    var selectionRingsNodes = [HeroNode]()
     var inEditMode = false
     var boundingView: UIView?
     var cameraNode: SCNNode!
@@ -104,7 +104,7 @@ class HeroesPlacerViewController: UIViewController {
         node.scale = SCNVector3(0.1, 0.1, 0.1)
         sceneView.scene.rootNode.addChildNode(node)
         selectedHeroName = nil
-        selectionRingsNodes.append(node.ringNode)
+        selectionRingsNodes.append(node)
     }
     @IBAction func onEditBtnPressed(_ sender: Any) {
         hideEditBtn()
@@ -116,6 +116,7 @@ class HeroesPlacerViewController: UIViewController {
     }
     
     @IBAction func onCloseEditModeBtnPressed(_ sender: Any) {
+        onSelectionEnded()
         showEditBtn()
         showHeroPickerBtn()
         hideEditModeLbl()
@@ -171,6 +172,26 @@ extension HeroesPlacerViewController {
         actionView.layer.cornerRadius = 15
         actionView.isHidden = true
     }
+    
+    func onSelectNode(heroNode: HeroNode) {
+        
+        heroNode.onSelectNode()
+        
+        showActionView()
+        hideFocusView()
+        
+        if lastSelectedNode !== heroNode {
+            lastSelectedNode?.onDeselectNode()
+            lastSelectedNode = heroNode
+        }
+    }
+    
+    func onSelectionEnded() {
+        
+        hideActionView()
+        
+        lastSelectedNode?.onDeselectNode()
+    }
 }
 
 //MARK: UIPopoverPresentationControllerDelegate
@@ -191,17 +212,12 @@ extension HeroesPlacerViewController : ARSCNViewDelegate {
             
             for node in strongSelf.selectionRingsNodes {
                 
-                let position = node.convertPosition(SCNVector3Zero, to: nil)
+                let position = node.ringNode.convertPosition(SCNVector3Zero, to: nil)
                 let projectedPoint = renderer.projectPoint(position)
                 let projectedCGPoint = CGPoint(x: CGFloat(projectedPoint.x), y: CGFloat(projectedPoint.y))
                 let distance = projectedCGPoint.distance(to: strongSelf.focusPoint)
                 if distance < 50 {
-                    if let heroNode = node.getTopMostParentNode() as? HeroNode {
-                        strongSelf.lastSelectedNode?.onDeselectNode()
-                        heroNode.onSelectNode()
-                        strongSelf.showToast(message: node.getTopMostParentNode().name!, font: .systemFont(ofSize: 30))
-                        strongSelf.lastSelectedNode = heroNode
-                    }
+                    strongSelf.onSelectNode(heroNode: node)
                 }
             }
         }

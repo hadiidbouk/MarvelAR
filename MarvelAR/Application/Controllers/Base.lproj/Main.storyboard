@@ -37,25 +37,25 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SbK-uZ-xuE">
-                                <rect key="frame" x="20" y="752" width="284" height="70"/>
+                                <rect key="frame" x="20" y="752" width="374" height="70"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="JOu-EJ-rfs">
-                                        <rect key="frame" x="0.0" y="0.0" width="284" height="70"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="70"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3B-cJ-ptr">
-                                                <rect key="frame" x="0.0" y="14" width="56" height="42.5"/>
+                                                <rect key="frame" x="0.0" y="14" width="78.5" height="42.5"/>
                                                 <state key="normal" image="delete"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="467-LR-M4q">
-                                                <rect key="frame" x="76" y="14" width="56" height="42.5"/>
+                                                <rect key="frame" x="98.5" y="14" width="78.5" height="42.5"/>
                                                 <state key="normal" image="rotate"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7F-Zm-auu">
-                                                <rect key="frame" x="152" y="14" width="56" height="42.5"/>
+                                                <rect key="frame" x="197" y="14" width="78.5" height="42.5"/>
                                                 <state key="normal" image="down"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="36l-q2-t9i">
-                                                <rect key="frame" x="228" y="14" width="56" height="42.5"/>
+                                                <rect key="frame" x="295.5" y="14" width="78.5" height="42.5"/>
                                                 <state key="normal" image="up"/>
                                             </button>
                                         </subviews>
@@ -108,7 +108,7 @@
                             <constraint firstItem="Kvb-v3-X7C" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="20" id="40C-JZ-Zow"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="vft-9Q-Njl" secondAttribute="bottom" constant="40" id="9LH-OR-Rdg"/>
                             <constraint firstItem="vft-9Q-Njl" firstAttribute="top" secondItem="Dqr-Fh-VCx" secondAttribute="bottom" constant="15" id="CDz-Fi-sEg"/>
-                            <constraint firstItem="vft-9Q-Njl" firstAttribute="leading" secondItem="SbK-uZ-xuE" secondAttribute="trailing" constant="20" id="EFe-cE-Fdz"/>
+                            <constraint firstAttribute="trailing" secondItem="SbK-uZ-xuE" secondAttribute="trailing" constant="20" id="EFe-cE-Fdz"/>
                             <constraint firstItem="aAS-A6-A8X" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" constant="40" id="Fck-Gc-yaf"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="GsS-dJ-CKf"/>
                             <constraint firstItem="SbK-uZ-xuE" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="20" id="Iww-GO-JeW"/>
