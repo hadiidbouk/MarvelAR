@@ -24,6 +24,12 @@ class HeroNode : SCNNode {
         return ringNode
     }()
     
+    var isRingHidden: Bool = true {
+        didSet {
+            ringNode.isHidden = isRingHidden
+        }
+    }
+    
     private(set) var shapeNode: SCNNode!
     
     var heroName: HeroName!
@@ -40,6 +46,7 @@ class HeroNode : SCNNode {
         shapeNode = getShapeNode(by: name.rawValue)
         addChildNode(shapeNode)
         
+        ringNode.isHidden = isRingHidden
         ringNode.position = SCNVector3(0, boundingBox.max.y + 0.1, 1)
         addChildNode(ringNode)
     }
@@ -49,10 +56,12 @@ class HeroNode : SCNNode {
     }
     
     func onSelectNode() {
+        isRingHidden = false
         ringNode.geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
     }
     
     func onDeselectNode() {
+        isRingHidden = true
         ringNode.geometry?.firstMaterial?.diffuse.contents = UIColor.white
     }
 }

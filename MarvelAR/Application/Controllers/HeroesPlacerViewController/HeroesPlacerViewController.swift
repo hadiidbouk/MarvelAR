@@ -14,7 +14,7 @@ class HeroesPlacerViewController: UIViewController {
 
     var heroesPickerViewController: HeroesPickerViewController?
     var selectedHeroName: HeroName?
-    var selectionRingsNodes = [HeroNode]()
+    var nodes = [HeroNode]()
     var inEditMode = false
     var boundingView: UIView?
     var cameraNode: SCNNode!
@@ -104,7 +104,7 @@ class HeroesPlacerViewController: UIViewController {
         node.scale = SCNVector3(0.1, 0.1, 0.1)
         sceneView.scene.rootNode.addChildNode(node)
         selectedHeroName = nil
-        selectionRingsNodes.append(node)
+        nodes.append(node)
     }
     @IBAction func onEditBtnPressed(_ sender: Any) {
         hideEditBtn()
@@ -112,6 +112,7 @@ class HeroesPlacerViewController: UIViewController {
         showEditModeLbl()
         showFocusView()
         showCloseEditModeBtn()
+        showRings()
         inEditMode = true
     }
     
@@ -122,6 +123,7 @@ class HeroesPlacerViewController: UIViewController {
         hideEditModeLbl()
         hideFocusView()
         hideCloseEditModeBtn()
+        hideRings()
         inEditMode = false
     }
     
@@ -192,6 +194,18 @@ extension HeroesPlacerViewController {
         
         lastSelectedNode?.onDeselectNode()
     }
+    
+    func showRings() {
+        for heroNode in nodes {
+            heroNode.isRingHidden = false
+        }
+    }
+    
+    func hideRings() {
+        for heroNode in nodes {
+            heroNode.isRingHidden = true
+        }
+    }
 }
 
 //MARK: UIPopoverPresentationControllerDelegate
@@ -210,7 +224,7 @@ extension HeroesPlacerViewController : ARSCNViewDelegate {
             
             if !strongSelf.inEditMode { return }
             
-            for node in strongSelf.selectionRingsNodes {
+            for node in strongSelf.nodes {
                 
                 let position = node.ringNode.convertPosition(SCNVector3Zero, to: nil)
                 let projectedPoint = renderer.projectPoint(position)
