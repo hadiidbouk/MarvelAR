@@ -8,8 +8,11 @@ MarvelAR is an iOS application that present Marvel Heroes 3D Models Using ARKit.
 ## ScreenShots
 <p float="left">
   <img src="https://github.com/hadiidbouk/MarvelAR/blob/master/ScreenShots/1.PNG" height="500px"/>
-<img src="https://github.com/hadiidbouk/MarvelAR/blob/master/ScreenShots/2.PNG" height="500px"/>
-<img src="https://github.com/hadiidbouk/MarvelAR/blob/master/ScreenShots/4.PNG" height="500px"/>
+  <img src="https://github.com/hadiidbouk/MarvelAR/blob/master/ScreenShots/2.PNG" height="500px"/>
+  <img src="https://github.com/hadiidbouk/MarvelAR/blob/master/ScreenShots/4.PNG" height="500px"/>
+  <img src="https://github.com/hadiidbouk/MarvelAR/blob/master/ScreenShots/5.PNG" height="500px"/>
+  <img src="https://github.com/hadiidbouk/MarvelAR/blob/master/ScreenShots/6.PNG" height="500px"/>
+
 </p>
 
 ## 👏🏻 Contributing 👏🏻
