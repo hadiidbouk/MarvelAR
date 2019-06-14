@@ -16,8 +16,10 @@
 		3181E48522AFC875007C1CF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3181E48422AFC875007C1CF2 /* Assets.xcassets */; };
 		3181E48822AFC875007C1CF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3181E48622AFC875007C1CF2 /* LaunchScreen.storyboard */; };
 		3181E49022AFDCF1007C1CF2 /* HeroesPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3181E48F22AFDCF1007C1CF2 /* HeroesPickerViewController.swift */; };
-		31E455B822B22F9C0053CB0D /* Heroes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E455B722B22F9C0053CB0D /* Heroes.swift */; };
+		31E455B822B22F9C0053CB0D /* HeroName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E455B722B22F9C0053CB0D /* HeroName.swift */; };
 		31E455BE22B2A6490053CB0D /* HeroesPlacerViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E455BD22B2A6490053CB0D /* HeroesPlacerViewController+Extensions.swift */; };
+		31E455C522B3761A0053CB0D /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E455C422B3761A0053CB0D /* CGPoint+Extensions.swift */; };
+		31E455C722B3BD3E0053CB0D /* HeroNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E455C622B3BD3E0053CB0D /* HeroNode.swift */; };
 		D357CB5DEBD2900582EAFB8E /* Pods_MarvelAR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B95C0694068A405D64268AA6 /* Pods_MarvelAR.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,8 +35,10 @@
 		3181E48722AFC875007C1CF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3181E48922AFC875007C1CF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3181E48F22AFDCF1007C1CF2 /* HeroesPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesPickerViewController.swift; sourceTree = "<group>"; };
-		31E455B722B22F9C0053CB0D /* Heroes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heroes.swift; sourceTree = "<group>"; };
+		31E455B722B22F9C0053CB0D /* HeroName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroName.swift; sourceTree = "<group>"; };
 		31E455BD22B2A6490053CB0D /* HeroesPlacerViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HeroesPlacerViewController+Extensions.swift"; sourceTree = "<group>"; };
+		31E455C422B3761A0053CB0D /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
+		31E455C622B3BD3E0053CB0D /* HeroNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroNode.swift; sourceTree = "<group>"; };
 		B95C0694068A405D64268AA6 /* Pods_MarvelAR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarvelAR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A6AAB3921A34FB8CBBDCCC /* Pods-MarvelAR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelAR.release.xcconfig"; path = "Target Support Files/Pods-MarvelAR/Pods-MarvelAR.release.xcconfig"; sourceTree = "<group>"; };
 		D1C8E4A252E272C68AF00623 /* Pods-MarvelAR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelAR.debug.xcconfig"; path = "Target Support Files/Pods-MarvelAR/Pods-MarvelAR.debug.xcconfig"; sourceTree = "<group>"; };
@@ -57,6 +61,7 @@
 			children = (
 				310E410422B12B78001CAFAE /* SCNNode+Extensions.swift */,
 				310E410622B12C2A001CAFAE /* FloatingPoint+Extensions.swift */,
+				31E455C422B3761A0053CB0D /* CGPoint+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -122,7 +127,8 @@
 		31E455C222B2A69F0053CB0D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				31E455B722B22F9C0053CB0D /* Heroes.swift */,
+				31E455B722B22F9C0053CB0D /* HeroName.swift */,
+				31E455C622B3BD3E0053CB0D /* HeroNode.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -254,8 +260,10 @@
 			files = (
 				310E410522B12B78001CAFAE /* SCNNode+Extensions.swift in Sources */,
 				310E410722B12C2A001CAFAE /* FloatingPoint+Extensions.swift in Sources */,
+				31E455C522B3761A0053CB0D /* CGPoint+Extensions.swift in Sources */,
 				31E455BE22B2A6490053CB0D /* HeroesPlacerViewController+Extensions.swift in Sources */,
-				31E455B822B22F9C0053CB0D /* Heroes.swift in Sources */,
+				31E455B822B22F9C0053CB0D /* HeroName.swift in Sources */,
+				31E455C722B3BD3E0053CB0D /* HeroNode.swift in Sources */,
 				3181E48022AFC874007C1CF2 /* HeroesPlacerViewController.swift in Sources */,
 				3181E49022AFDCF1007C1CF2 /* HeroesPickerViewController.swift in Sources */,
 				3181E47C22AFC874007C1CF2 /* AppDelegate.swift in Sources */,

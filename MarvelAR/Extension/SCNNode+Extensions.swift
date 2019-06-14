@@ -10,23 +10,30 @@ import SceneKit
 
 extension SCNNode {
     
+    func getTopMostParentNode() -> SCNNode {
+        
+        if let name = name,
+            name == HeroNode.shapeName {
+            return parent!
+        }
+        
+        if let topMostParentNode = parent {
+            
+            return topMostParentNode.getTopMostParentNode()
+        }
+        
+        return self
+    }
+    
     func rotateInPlace(duration: Double) {
         let loop = SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 5, z: 0, duration: 2.5))
         runAction(loop)
     }
     
-    func centerPivotWithoutMoving() {
+    func defaultPivotAndPosition() {
         
-        let min = boundingBox.min
-        let max = boundingBox.max
-        
-        let x = Float(min.x + (max.x - min.x)/2)
-        let y = Float(min.y + (max.y - min.y)/2)
-        let z = Float(min.z + (max.z - min.z)/2)
-        
-        pivot = SCNMatrix4MakeTranslation(x, y, z)
-        
-        position = SCNVector3(x, y, z)
+        pivot = SCNMatrix4MakeTranslation(0, 0, 0)
+        position = SCNVector3Zero
     }
 }
 

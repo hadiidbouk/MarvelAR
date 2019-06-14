@@ -60,20 +60,17 @@ class HeroesPickerViewController: UIViewController {
     
     private func addHerosNodes() {
     
-        let ironManNode = Heroes.getHeroNode(by: "ironMan")
-        ironManNode.position = SCNVector3(0, -2, 0)
+        let ironManNode = HeroNode(name: .ironMan, position: SCNVector3(0, -2, 0))
         ironManNode.rotateInPlace(duration: 8)
         scene.rootNode.addChildNode(ironManNode)
         
-        let hulkNode = Heroes.getHeroNode(by: "hulk")
-        hulkNode.position = SCNVector3(-3.5, -2, 0)
-        hulkNode.rotateInPlace(duration: 8)
-        scene.rootNode.addChildNode(hulkNode)
-        
-        let captainAmericaNode = Heroes.getHeroNode(by: "captainAmerica")
-        captainAmericaNode.position = SCNVector3(3.2, -2.1, 0)
+        let captainAmericaNode = HeroNode(name: .captainAmerica, position: SCNVector3(3.2, -2.1, 0))
         captainAmericaNode.rotateInPlace(duration: 8)
         scene.rootNode.addChildNode(captainAmericaNode)
+        
+        let hulkNode = HeroNode(name: .hulk, position: SCNVector3(-3.5, -2, 0))
+        hulkNode.rotateInPlace(duration: 8)
+        scene.rootNode.addChildNode(hulkNode)
     }
     
     @objc func handleTap(_ gestureRecognizer: UIGestureRecognizer) {
@@ -81,9 +78,13 @@ class HeroesPickerViewController: UIViewController {
         let hitResults = sceneView.hitTest(p, options: [:])
         
         if hitResults.count > 0 {
+            
             let node = hitResults[0].node
-            guard let parentNode = node.parent else { return }
-            heroesPlacerViewController?.onHeroSelected(selectedHeroName: parentNode.name)
+            let parentNode = node.getTopMostParentNode()
+            guard let parentName = parentNode.name,
+                  let heroName = HeroName(rawValue: parentName) else { return }
+            
+            heroesPlacerViewController?.onHeroSelected(selectedHeroName: heroName)
         }
     }
 }
