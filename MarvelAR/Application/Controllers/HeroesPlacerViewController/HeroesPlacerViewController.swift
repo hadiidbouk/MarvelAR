@@ -64,6 +64,7 @@ class HeroesPlacerViewController: UIViewController {
         super.viewDidLoad()
         
         setupUI()
+        addGestures()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,13 +84,20 @@ class HeroesPlacerViewController: UIViewController {
         return .none
     }
     
-    @IBAction func onPickAHeroBtnPressed(_ sender: Any) {
-        heroesPickerViewController = HeroesPickerViewController(size: CGSize(width: view.bounds.width, height: 300))
-        heroesPickerViewController!.modalPresentationStyle = .popover
-        heroesPickerViewController!.popoverPresentationController?.delegate = self
-        heroesPickerViewController!.heroesPlacerViewController = self
-        present(heroesPickerViewController!, animated: true, completion: nil)
-        heroesPickerViewController!.popoverPresentationController?.sourceView = sender as? UIView
+    func addGestures() {
+        let rotateGesture = LongPressActionGestureRecognizer(actionType: .rotate, target: self, action: #selector(onLongPressActionBtn(gesture:)))
+        let upGesture = LongPressActionGestureRecognizer(actionType: .moveUp, target: self, action: #selector(onLongPressActionBtn(gesture:)))
+        let downGesture = LongPressActionGestureRecognizer(actionType: .moveDown, target: self, action: #selector(onLongPressActionBtn(gesture:)))
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture))
+        
+        rotateGesture.minimumPressDuration = 0.1
+        upGesture.minimumPressDuration = 0.1
+        downGesture.minimumPressDuration = 0.1
+        
+        rotateBtn.addGestureRecognizer(rotateGesture)
+        upBtn.addGestureRecognizer(upGesture)
+        downBtn.addGestureRecognizer(downGesture)
+        sceneView.addGestureRecognizer(pinchGesture)
     }
     
     func onHeroSelected(selectedHeroName: HeroName) {
@@ -106,27 +114,7 @@ class HeroesPlacerViewController: UIViewController {
         selectedHeroName = nil
         nodes.append(node)
     }
-    @IBAction func onEditBtnPressed(_ sender: Any) {
-        hideEditBtn()
-        hideHeroPickerBtn()
-        showEditModeLbl()
-        showFocusView()
-        showCloseEditModeBtn()
-        showRings()
-        inEditMode = true
-    }
-    
-    @IBAction func onCloseEditModeBtnPressed(_ sender: Any) {
-        onSelectionEnded()
-        showEditBtn()
-        showHeroPickerBtn()
-        hideEditModeLbl()
-        hideFocusView()
-        hideCloseEditModeBtn()
-        hideRings()
-        inEditMode = false
-    }
-    
+   
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         if heroesPickerViewController?.isViewLoaded ?? false && (heroesPickerViewController?.view.window != nil) {
@@ -205,6 +193,93 @@ extension HeroesPlacerViewController {
         for heroNode in nodes {
             heroNode.isRingHidden = true
         }
+    }
+}
+
+//MARK: @IBAction & Btns Handling
+extension HeroesPlacerViewController {
+    
+    @IBAction func onPickAHeroBtnPressed(_ sender: Any) {
+        heroesPickerViewController = HeroesPickerViewController(size: CGSize(width: view.bounds.width, height: 300))
+        heroesPickerViewController!.modalPresentationStyle = .popover
+        heroesPickerViewController!.popoverPresentationController?.delegate = self
+        heroesPickerViewController!.heroesPlacerViewController = self
+        present(heroesPickerViewController!, animated: true, completion: nil)
+        heroesPickerViewController!.popoverPresentationController?.sourceView = sender as? UIView
+    }
+    
+    @objc func onLongPressActionBtn(gesture: LongPressActionGestureRecognizer) {
+        
+        guard let heroNode = lastSelectedNode else { return }
+        
+        if gesture.state == .ended {
+            heroNode.removeAllActions()
+        } else if gesture.state == .began {
+            addAction(heroNode: heroNode, actionType: gesture.actionType)
+        }
+    }
+    
+    private func addAction(heroNode: HeroNode, actionType: ActionType) {
+        
+        switch actionType {
+            case .rotate:
+                let rotate = SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: CGFloat(0.1 * Double.pi), z: 0, duration: 0.1))
+                heroNode.runAction(rotate)
+            case .moveUp:
+                let moveUp = SCNAction.repeatForever(SCNAction.moveBy(x: 0, y: 0.05, z: 0, duration: 0.1))
+                heroNode.runAction(moveUp)
+            case .moveDown:
+                let moveDown = SCNAction.repeatForever(SCNAction.moveBy(x: 0, y: -0.05, z: 0, duration: 0.1))
+                heroNode.runAction(moveDown)
+            case .remove:
+                nodes.removeAll { $0 === lastSelectedNode }
+                lastSelectedNode?.removeFromParentNode()
+                lastSelectedNode = nil
+            case .scale:
+                return
+        }
+    }
+    
+    @objc func handlePinchGesture(withGestureRecognizer recognizer: UIPinchGestureRecognizer) {
+        
+        guard let heroNode = lastSelectedNode else { return }
+
+        if recognizer.state == .changed && inEditMode {
+            let pinchScaleX = Float(recognizer.scale) * heroNode.scale.x
+            let pinchScaleY =  Float(recognizer.scale) * heroNode.scale.y
+            let pinchScaleZ =  Float(recognizer.scale) * heroNode.scale.z
+            
+            heroNode.scale = SCNVector3(x: Float(pinchScaleX), y: Float(pinchScaleY), z: Float(pinchScaleZ))
+            recognizer.scale = 1
+        }
+        
+    }
+    
+    @IBAction func onRemoveActionBtnPressed(_ sender: Any) {
+        
+        guard let heroNode = lastSelectedNode else { return }
+        addAction(heroNode: heroNode, actionType: .remove)
+    }
+    
+    @IBAction func onEditBtnPressed(_ sender: Any) {
+        hideEditBtn()
+        hideHeroPickerBtn()
+        showEditModeLbl()
+        showFocusView()
+        showCloseEditModeBtn()
+        showRings()
+        inEditMode = true
+    }
+    
+    @IBAction func onCloseEditModeBtnPressed(_ sender: Any) {
+        onSelectionEnded()
+        showEditBtn()
+        showHeroPickerBtn()
+        hideEditModeLbl()
+        hideFocusView()
+        hideCloseEditModeBtn()
+        hideRings()
+        inEditMode = false
     }
 }
 

@@ -45,6 +45,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3B-cJ-ptr">
                                                 <rect key="frame" x="0.0" y="14" width="78.5" height="42.5"/>
                                                 <state key="normal" image="delete"/>
+                                                <connections>
+                                                    <action selector="onRemoveActionBtnPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="fma-6K-uaS"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="467-LR-M4q">
                                                 <rect key="frame" x="98.5" y="14" width="78.5" height="42.5"/>
